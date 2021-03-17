@@ -1,4 +1,6 @@
 require 'dxruby'
+require_relative 'frog'
+require_relative 'snake'
 
 require_relative 'player'
 require_relative 'enemy'
@@ -16,23 +18,30 @@ image.set_color_key([255, 255, 255])
 
 player = Player.new(250, 340, image, 10)
 
+frog = Frog.new(100, 380)
+snake = Snake.new(500, 380)
+
 enemy = Image.load("images/enemy.png")
 enemy.set_color_key([255, 255, 255])
+
 
 100.times do
     Enemy.add(rand(500..10000), 340, enemy, 5)
 end
 score = Score::Score.new
 Window.loop do
-    score.cal
     Window.draw(0, 0, back)
-    
+    score.cal
     break if Input.key_push?(K_ESCAPE)
     # Window.draw(500, 340, enemy)
-
+    frog.update
+    frog.draw
 
     player.update
     player.draw
+
+    snake.update
+    snake.draw
 
     Enemy.collision.each do |enemy|
         enemy.update
@@ -42,4 +51,3 @@ Window.loop do
     Sprite.check(player, Enemy.collision)
 
 end 
-
