@@ -19,18 +19,19 @@ class Frog < Sprite
         # self.x += @dx
         # self.y -= @dy
     end
-  
+
     def update
         self.x += Input.x
         self.y *= @g
-        if Input.key_push?(K_SPACE)
+        if Input.key_push?(K_SPACE) then
             #self.x += @dx
             while y >= @ceiling
                 self.y -= @dy
             end
-
+        end
+        if self.y <= @floor then
             self.y += @dy
         end
     end
 
-  end
+end
