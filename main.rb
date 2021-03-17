@@ -24,9 +24,8 @@ enemy.set_color_key([255, 255, 255])
 end
 score = Score::Score.new
 Window.loop do
-    score.cal
     Window.draw(0, 0, back)
-    
+    score.cal
     break if Input.key_push?(K_ESCAPE)
     # Window.draw(500, 340, enemy)
 
