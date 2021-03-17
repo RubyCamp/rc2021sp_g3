@@ -1,9 +1,8 @@
 require 'dxruby'
 
-
 require_relative 'player'
 require_relative 'enemy'
-
+require_relative 'score'
 Widoth = 600
 Height = 450
 
@@ -23,8 +22,9 @@ enemy.set_color_key([255, 255, 255])
 100.times do
     Enemy.add(rand(500..10000), 340, enemy, 5)
 end
-
+score = Score::Score.new
 Window.loop do
+    score.cal
     Window.draw(0, 0, back)
     
     break if Input.key_push?(K_ESCAPE)
@@ -42,4 +42,4 @@ Window.loop do
     Sprite.check(player, Enemy.collision)
 
 end 
->>>>>>> ps-hit
+
