@@ -37,6 +37,7 @@ class Frog < Sprite
 
     def jumping
         while y >= @ceiling
+            self.x += @dx
             self.y -= @dy
         end
         
@@ -45,7 +46,7 @@ class Frog < Sprite
 
     def walking
         @direction = Input.x * 3
-        
+
         if self.y <= @floor then
             self.y += @dy
         end
