@@ -6,10 +6,11 @@ require_relative 'player'
 require_relative 'enemy'
 require_relative 'score'
 
-Widoth = 600
+
+Width = 600
 Height = 450
 
-Window.width = Widoth
+Window.width = Width
 Window.height = Height
 Window.caption = "RubyCamp2021 Team3"
 
@@ -17,7 +18,7 @@ back = Image.load("images/back.png")
 image = Image.load("images/player.png")
 image.set_color_key([255, 255, 255])
 
-player = Player.new(250, 340, image, 10)
+player = Player.new(250, 340, image, 10, 3)
 
 frog = Frog.new(100, 380)
 snake = Snake.new(500, 380)
@@ -52,5 +53,8 @@ Window.loop do
     end
 
     Sprite.check(player, Enemy.collision)
+    player.frameout(Width)
+
+    break if player.life == 0
 
 end 
