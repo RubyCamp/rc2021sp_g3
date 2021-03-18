@@ -1,11 +1,10 @@
 class Frog < Sprite
     #include MathHelper
-
-    def initialize(x, y)
+    attr_accessor :life
+    def initialize(x, y, image, life)
+        super(x, y, image)
         self.x = x
         self.y = y
-        self.image = Image.load("images/frog_m2.png")
-        self.image.set_color_key(C_WHITE)
 
         @floor = 380
         @ceiling = 320
@@ -18,6 +17,8 @@ class Frog < Sprite
         t = 2
         angle = 60
         @g = 1
+        @life = life
+        
         @dx = Math.cos((angle) / 180.0 * Math::PI) * t
         @dy = Math.sin((angle) / 180.0 * Math::PI) * t
     end
@@ -35,6 +36,10 @@ class Frog < Sprite
             walking
         end
         self.x += @direction
+    end
+    def shot
+        @life -= 1
+
     end
 
     private
@@ -62,4 +67,6 @@ class Frog < Sprite
             self.x = @wall_r - 32
         end
     end
+
+    
 end
