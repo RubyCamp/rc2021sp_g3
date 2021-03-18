@@ -35,7 +35,7 @@ score = Score::Score.new
 Window.loop do
     Window.draw(0, 0, back)
     score.cal
-
+    p player.life
     break if Input.key_push?(K_ESCAPE)
     # Window.draw(500, 340, enemy)
     frog.update
