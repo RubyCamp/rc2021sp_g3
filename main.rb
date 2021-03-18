@@ -1,10 +1,11 @@
 require 'dxruby'
 require_relative 'frog'
 require_relative 'snake'
-
+require_relative 'Scroll1'
 require_relative 'player'
 require_relative 'enemy'
 require_relative 'score'
+
 Widoth = 600
 Height = 450
 
@@ -28,10 +29,12 @@ enemy.set_color_key([255, 255, 255])
 100.times do
     Enemy.add(rand(500..10000), 340, enemy, 5)
 end
+
 score = Score::Score.new
 Window.loop do
     Window.draw(0, 0, back)
     score.cal
+
     break if Input.key_push?(K_ESCAPE)
     # Window.draw(500, 340, enemy)
     frog.update
