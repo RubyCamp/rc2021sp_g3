@@ -10,27 +10,45 @@ class Frog < Sprite
         @floor = 380
         @ceiling = 300
 
-        # @v = 120
+        @jumping = false
+        @direction = 0
+
         t = 2
         angle = 60
         @g = 1
         @dx = Math.cos((angle) / 180.0 * Math::PI) * t
         @dy = Math.sin((angle) / 180.0 * Math::PI) * t
-        # self.x += @dx
-        # self.y -= @dy
     end
-  
-    def update
-        self.x += Input.x
-        self.y *= @g
-        if Input.key_push?(K_SPACE)
-            #self.x += @dx
-            while y >= @ceiling
-                self.y -= @dy
-            end
 
+    def update
+        @jumping = true if Input.key_push?(K_SPACE)
+        if @jumping then
+            jumping
+            # if self.y <= @floor then
+            #     self.y += @dy
+            # end
+        else
+            walking
+        end
+        self.x += @direction
+    end
+
+    private
+
+    def jumping
+        while y >= @ceiling
+            self.x += @dx
+            self.y -= @dy
+        end
+        
+        @jumping = false
+    end
+
+    def walking
+        @direction = Input.x * 3
+
+        if self.y <= @floor then
             self.y += @dy
         end
     end
-
-  end
+end
