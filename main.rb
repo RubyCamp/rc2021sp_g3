@@ -18,8 +18,10 @@ frog_image.set_color_key(C_WHITE)
 snake = Image.load("images/snake_m2.png")
 snake.set_color_key(C_WHITE)
 
+deadfrog = Image.load("images/dead_frog1.png")
 
-frog = Frog.new(100, 380, frog_image, 3)
+
+frog = Frog.new(100, 380, frog_image, 0)
 
 100.times do
     Snake.add(rand(500..10000), 380, snake)
@@ -42,10 +44,12 @@ Window.loop do
 
 
     if frog.life == 0
-        background = Image.new(600, 450, [255,0,0,0])
+        background = Image.new(600, 450, [255 ,255 ,255 ,255])
         Window.draw(0, 0, background)
-        font = Font.new(32)
-        Window.draw_font(100, 150, "GAME OVER", font)
+        font = Font.new(48)
+        Window.draw(0, 0, deadfrog)
+        Window.draw_font(130, 160, "GAME OVER", font , color:C_BLACK)
+        
         Window.update
         sleep(3)
         break
