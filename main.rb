@@ -49,5 +49,4 @@ Window.loop do
     end
 
     Sprite.check(player, Enemy.collision)
-
-end 
+end
