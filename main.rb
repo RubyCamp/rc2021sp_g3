@@ -18,8 +18,8 @@ frog_image.set_color_key(C_WHITE)
 snake = Image.load("images/snake_m2.png")
 snake.set_color_key(C_WHITE)
 
-
-frog = Frog.new(100, 380, frog_image, 3)
+@font = Font.new(28)
+frog = Frog.new(100, 380, frog_image, 20)
 
 100.times do
     Snake.add(rand(500..10000), 380, snake)
@@ -42,5 +42,6 @@ Window.loop do
 
 
     break if frog.life == 0
+    Window.draw_font(200, 5, "life " + frog.life.to_s, @font)
 
 end 
