@@ -41,6 +41,14 @@ Window.loop do
     Sprite.check(frog, Snake.collision)
 
 
-    break if frog.life == 0
+    if frog.life == 0
+        background = Image.new(600, 450, [255,0,0,0])
+        Window.draw(0, 0, background)
+        font = Font.new(32)
+        Window.draw_font(100, 150, "GAME OVER", font)
+        Window.update
+        sleep(3)
+        break
+    end
 
 end 
