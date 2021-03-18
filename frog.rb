@@ -37,6 +37,10 @@ class Frog < Sprite
         end
         self.x += @direction
     end
+    def shot
+        @life -= 1
+
+    end
 
     private
 
@@ -64,8 +68,5 @@ class Frog < Sprite
         end
     end
 
-    def shot
-        @life -= 1
-    end
     
 end
