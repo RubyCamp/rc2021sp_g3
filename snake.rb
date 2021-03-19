@@ -18,7 +18,7 @@ class Snake < Sprite
   
     def update
         self.x -= rand(1..5)
-        self.y = y
+        self.y += rand(-1..1)
     end
 
     def hit(obj)

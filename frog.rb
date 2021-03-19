@@ -7,14 +7,14 @@ class Frog < Sprite
         self.y = y
 
         @floor = 380
-        @ceiling = 320
+        @ceiling = 265
         @wall_l = 0
         @wall_r = 600
 
         @jumping = false
         @direction = 0
 
-        t = 2
+        t = 3
         angle = 60
         @g = 1
         @life = life
@@ -26,10 +26,13 @@ class Frog < Sprite
     def update
         hit_wall
         
-        @jumping = true if Input.key_push?(K_SPACE)
-        if (self.y + 32) != @ceiling then
-            walking
+        if Input.key_push?(K_SPACE) then
+            if self.y >= @floor then
+                
+                @jumping = true
+            end    
         end
+
         if @jumping then
             jumping
         else
