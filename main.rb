@@ -25,17 +25,20 @@ snake.set_color_key(C_WHITE)
 deadfrog = Image.load("images/dead_frog1.png")
 
 
-frog = Frog.new(100, 380, frog_image, 0)
 
-100.times do
-    Snake.add(rand(500..10000), 380, snake)
+
+frog = Frog.new(100, 380, frog_image, 3)
+@font = Font.new(28)
+
+1000.times do
+    Snake.add(rand(500..100000), 380, snake)
 end
 
 score = Score::Score.new
 Window.loop do
     Window.draw(0, 0, back)
     score.cal
-    
+    Window.draw_font(200, 5, "life " + frog.life.to_s, @font)
     break if Input.key_push?(K_ESCAPE)
 
     frog.update
@@ -49,14 +52,13 @@ Window.loop do
     Sprite.check(frog, Snake.collision)
 
 
-    if frog.life == 0
+    if frog.life <= 0
         background = Image.new(600, 450, [255 ,255 ,255 ,255])
         Window.draw(0, 0, background)
         font = Font.new(48)
         Window.draw(0, 0, deadfrog)
-        Window.draw_font(130, 160, "GAME OVER", font , color:C_BLACK)
-        Window.draw_font(130, 160, "SCORE" + fin_score.to_s , font , color:C_BLACK)
-        
+        Window.draw_font(160, 160, "GAME OVER", font , color:C_BLACK)
+        score.cal2
         Window.update
         sleep(3)
         break
